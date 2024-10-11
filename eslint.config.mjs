@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import json from 'eslint-plugin-json';
 
 export default [
     js.configs.recommended,
@@ -16,5 +17,6 @@ export default [
         },
         languageOptions: { ecmaVersion: 2022, sourceType: 'script', globals: { chrome: 'readonly' }}
     },
-    { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }}
+    { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }},
+    { files: ['**/*.json'], ...json.configs['recommended'] }
 ];
