@@ -1,4 +1,4 @@
-name: Sync * to adamlui/ai-apps/perplexity-omnibox/*
+name: Sync ** to adamlui/ai-apps/perplexity-omnibox/
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           repository: adamlui/ai-apps
           path: adamlui/ai-apps
 
-      - name: Sync * to adamlui/ai-apps/perplexity-omnibox/*
+      - name: Sync ** to adamlui/ai-apps/perplexity-omnibox/
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/perplexity-omnibox/ \
