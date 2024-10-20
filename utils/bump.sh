@@ -12,19 +12,19 @@ manifest="chromium/extension/manifest.json"
 
 # Bump version
 echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
-today=$(date +'%Y.%-m.%-d') # YYYY.M.D format
+TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
-if [[ $old_ver == "$today" ]]  # exact match for $today
-    then # bump to $today.1
-        NEW_VER="$today.1"
-elif [[ $old_ver == "$today."* ]] # partial match for $today
-    then # bump to $today.n+1
+if [[ $old_ver == "$TODAY" ]]  # exact match for $TODAY
+    then # bump to $TODAY.1
+        NEW_VER="$TODAY.1"
+elif [[ $old_ver == "$TODAY."* ]] # partial match for $TODAY
+    then # bump to $TODAY.n+1
         last_number=$(echo "$old_ver" | awk -F '.' '{print $NF}')
-        NEW_VER="$today.$((last_number + 1))"
-else # no match for $today
-    # bump to $today
-        NEW_VER="$today"
+        NEW_VER="$TODAY.$((last_number + 1))"
+else # no match for $TODAY
+    # bump to $TODAY
+        NEW_VER="$TODAY"
 fi
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
 echo -e "${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
