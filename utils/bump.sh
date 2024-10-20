@@ -1,39 +1,39 @@
 #!/bin/bash
 
 # Init UI colors
-nc="\033[0m"    # no color
-br="\033[1;91m" # bright red
-by="\033[1;33m" # bright yellow
-bg="\033[1;92m" # bright green
-bw="\033[1;97m" # bright white
+NC="\033[0m"    # no color
+BR="\033[1;91m" # bright red
+BY="\033[1;33m" # bright yellow
+BG="\033[1;92m" # bright green
+BW="\033[1;97m" # bright white
 
 # Init manifest path
-MANIFEST="chromium/extension/manifest.json"
+manifest="chromium/extension/manifest.json"
 
 # Bump version
-echo -e "${by}\nBumping version in ${MANIFEST}...${nc}\n"
-TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
-NEW_VERSIONS=() # for dynamic commit msg
-OLD_VER=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$MANIFEST")
-if [[ $OLD_VER == "$TODAY" ]]  # exact match for $TODAY
-    then # bump to $TODAY.1
-        NEW_VER="$TODAY.1"
-elif [[ $OLD_VER == "$TODAY."* ]] # partial match for $TODAY
-    then # bump to $TODAY.n+1
-        LAST_NUMBER=$(echo "$OLD_VER" | awk -F '.' '{print $NF}')
-        NEW_VER="$TODAY.$((LAST_NUMBER + 1))"
-else # no match for $TODAY
-    # bump to $TODAY
-        NEW_VER="$TODAY"
+echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
+today=$(date +'%Y.%-m.%-d') # YYYY.M.D format
+new_versions=() # for dynamic commit msg
+old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
+if [[ $old_ver == "$today" ]]  # exact match for $today
+    then # bump to $today.1
+        NEW_VER="$today.1"
+elif [[ $old_ver == "$today."* ]] # partial match for $today
+    then # bump to $today.n+1
+        last_number=$(echo "$old_ver" | awk -F '.' '{print $NF}')
+        NEW_VER="$today.$((last_number + 1))"
+else # no match for $today
+    # bump to $today
+        NEW_VER="$today"
 fi
-sed -i "s/\"version\": \"$OLD_VER\"/\"version\": \"$NEW_VER\"/" "$MANIFEST"
-echo -e "${bw}v${OLD_VER}${nc} → ${bg}v${NEW_VER}${nc}"
+sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
+echo -e "${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
 
 # Commit/push bump(s)
-echo -e "${by}\nCommitting $( [[ $MULTI_BUMP == true ]] && echo bumps || echo bump) to Git...\n${nc}"
+echo -e "${BY}\nCommitting $( [[ $MULTI_BUMP == true ]] && echo bumps || echo bump) to Git...\n${NC}"
 git add ./**/manifest.json
 git commit -n -m "Bumped \`version\` to $NEW_VER"
 git push
 
 # Print final summary
-echo -e "\n${bg}Success! ${MANIFEST} updated/committed/pushed to GitHub${nc}"
+echo -e "\n${BG}Success! ${manifest} updated/committed/pushed to GitHub${NC}"
