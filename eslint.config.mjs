@@ -1,5 +1,5 @@
 import js from '@eslint/js'
-import json from 'eslint-plugin-json'
+import json from '@eslint/json'
 
 export default [
     {
@@ -18,5 +18,5 @@ export default [
         languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { chrome: 'readonly' }}
     },
     { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }},
-    { files: ['**/*.json'], ...json.configs['recommended'] }
+    { files: ['**/*.json'], ignores: ['**/package-lock.json'], language: 'json/json', ...json.configs.recommended }
 ]
