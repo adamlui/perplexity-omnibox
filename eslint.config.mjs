@@ -2,7 +2,7 @@ import js from '@eslint/js'
 import stylisticJS from '@stylistic/eslint-plugin-js'
 import json from '@eslint/json'
 import markdown from '@eslint/markdown'
-import eslintPluginYml from 'eslint-plugin-yml'
+import yml from 'eslint-plugin-yml'
 
 export default [
     {
@@ -34,5 +34,5 @@ export default [
             'markdown/no-missing-label-refs': 'off' // allow missing label references
         }
     },
-    { files: ['**/*.yaml, **/*.yml'], ...eslintPluginYml.configs['flat/standard'][1] }
+    { files: ['**/*.yaml, **/*.yml'], ...yml.configs['flat/standard'][1] }
 ]
