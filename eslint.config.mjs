@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import stylisticJS from '@stylistic/eslint-plugin-js'
 import json from '@eslint/json'
 import markdown from '@eslint/markdown'
 import eslintPluginYml from 'eslint-plugin-yml'
@@ -7,9 +8,11 @@ export default [
     {
         files: ['**/*.js', '**/*.mjs'],
         languageOptions: { ecmaVersion: 'latest', sourceType: 'script', globals: { chrome: 'readonly' }},
+        plugins: { 'js-styles': stylisticJS },
         rules: {
             ...js.configs.recommended.rules,
             'indent': 'off', 'no-unexpected-multiline': 'off', 'key-spacing': 'off', // allow whitespace anywhere
+            'js-styles/no-trailing-spaces': 'error', // ...except at ends of lines
             'quotes': ['error', 'single', { 'allowTemplateLiterals': true }], // enforce single quotes except backticks to avoid escaping quotes
             'comma-dangle': ['error', 'never'], // enforce no trailing commas in arrays or objects
             'no-async-promise-executor': 'off', // allow promise executor functions to be async (to accomodate await lines)
