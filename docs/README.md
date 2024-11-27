@@ -19,6 +19,8 @@
 
 ## FEATURES
 
+<div align="center">
+
 | ⚡ **Blazing Fast AI**       | 🌍 **Cross-Browser Support**      | 🔒 **Privacy First**              |
 |------------------------------|-----------------------------------|------------------------------------|
 | AI-powered answers instantly | Compatible with Chrome & Edge    | No personal data is collected.    |
@@ -26,6 +28,8 @@
 | 🎨 **Customizable**          | 💨 **Lightweight**               | 🚀 **Performance Optimized**      |
 |------------------------------|-----------------------------------|------------------------------------|
 | Adjust UI and commands easily| Minimal resource usage           | Fast and seamless operation.      |
+
+</div>
 
 ---
 
