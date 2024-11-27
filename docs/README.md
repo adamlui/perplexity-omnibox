@@ -21,13 +21,13 @@
 
 <div align="center">
 
-| ⚡ **Blazing Fast AI**       | 🌍 **Cross-Browser Support**      | 🔒 **Privacy First**              |
-|------------------------------|-----------------------------------|------------------------------------|
-| AI-powered answers instantly | Compatible with Chrome & Edge     | No personal data is collected.     |
+| ⚡ **Blazing Fast AI**       | 🌍 **Cross-Browser Support**      |
+|------------------------------|-----------------------------------|
+| AI-powered answers instantly | Compatible with Chrome & Edge     |
 
-| 💨 **Lightweight**               | 🚀 **Performance Optimized**      |
-|----------------------------------|------------------------------------|
-| Minimal resource usage           | Fast and seamless operation.       |
+| 🔒 **Privacy First**              | 💨 **Lightweight**               | 🚀 **Performance Optimized**      |
+|------------------------------------|----------------------------------|------------------------------------|
+| No personal data is collected.     | Minimal resource usage           | Fast and seamless operation.       |
 
 </div>
 
