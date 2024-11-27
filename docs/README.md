@@ -13,8 +13,6 @@
     <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=for-the-badge&logo=google-chrome" alt="Install Button">
   </a>
   <br><br>
-  <img src="https://img.shields.io/github/stars/adamlui/perplexity-omnibox?style=social" alt="Stars">
-  <img src="https://img.shields.io/github/v/release/adamlui/perplexity-omnibox?style=flat-square" alt="Version">
 </div>
 
 ---
@@ -41,4 +39,4 @@
 
 ---
 
-<div align="center"> <p><strong>Crafted with care by <a href="https://github.com/adamlui">Adam Lui</a></strong></p> <a href="https://github.com/adamlui/perplexity-omnibox" target="_blank"> <img src="https://img.shields.io/github/stars/adamlui/perplexity-omnibox?style=social" alt="Stars"> </a> <a href="https://chrome.perplexityomnibox.com" target="_blank"> <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=flat-square" alt="Install"> </a> </div>
+<div align="center"> <p><strong>Crafted with care by <a href="https://github.com/adamlui">Adam Lui</a></strong></p> <a href="https://chrome.perplexityomnibox.com" target="_blank"> <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=flat-square" alt="Install"> </a> </div>
