@@ -34,7 +34,7 @@
 1. **[Download the Extension](https://chrome.perplexityomnibox.com)** from the Chrome Web Store.  
 2. **Pin** it to your toolbar for easy access.  
 3. **Start Searching**:
-   - Type `?` in the browser's omnibox followed by your query.  
+   - Type `@perplexity` in the browser's omnibox followed by a space, then your query.  
    - Press **Enter** to get results directly.
 
 ---
