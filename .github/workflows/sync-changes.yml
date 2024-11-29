@@ -3,7 +3,7 @@ name: Sync ** to adamlui/ai-apps/perplexity-omnibox/
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*json", "!eslint.config*"]
+    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Sync ** to adamlui/ai-apps/perplexity-omnibox/
         run: |
-          rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
+          rsync -avhr --delete --exclude={'.*','eslint*','package*.json'} \
             ${{ github.workspace }}/adamlui/perplexity-omnibox/ \
             ${{ github.workspace }}/adamlui/ai-apps/perplexity-omnibox/
 
