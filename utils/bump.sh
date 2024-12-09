@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bumps Chromium extension manifest + git commit/push
+# Bumps Chromium manifest if changes detected + git commit/push
 
 shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
