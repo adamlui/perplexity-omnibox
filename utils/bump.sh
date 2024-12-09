@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Bumps extension manifest + git commit/push
+# Bumps Chromium extension manifest + git commit/push
+
+shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
 # Init UI COLORS
 NC="\033[0m"    # no color
@@ -10,32 +12,42 @@ BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
 # Init manifest PATH
-manifest_path="chromium/extension/manifest.json"
+MANIFEST_PATH="chromium/extension/manifest.json"
 
-# BUMP version
-echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
+echo -e "${BY}\nBumping version in ${MANIFEST_PATH}...${NC}\n"
+
+# Init BUMP vars
 bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
-new_versions=() # for dynamic commit msg
-old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
+
+# Check latest commit for extension changes
+chromium_manifest_path=$(dirname "$MANIFEST_PATH" | sed 's|^\./||')
+echo "Checking last commit details for $chromium_manifest_path..."
+latest_platform_commit_msg=$(git log -1 --format=%s -- "$chromium_manifest_path")
+if [[ $latest_platform_commit_msg == bump*(version|manifest)* ]] ; then
+    echo -e "No changes found." ; exit ; fi 
+
+echo "Bumping version in Chromium manifest..."
+
+# Determine old/new versions
+old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$MANIFEST_PATH")
 if [[ $old_ver == "$TODAY" ]] ; then
      new_ver="$TODAY.1"
 elif [[ $old_ver == "$TODAY."* ]] ; then
      LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
      new_ver="$TODAY.$((LAST_NUMBER + 1))"
 else new_ver="$TODAY" ; fi
-new_versions+=("$new_ver")
-sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest_path"
-echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
+
+# Bump old version
+sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$MANIFEST_PATH"
+echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
 ((bumped_cnt++))
 
-# COMMIT/PUSH bump
+# COMMIT/PUSH bump(s)
 if [[ $bumped_cnt -eq 0 ]] ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
-    echo -e "\n${BY}\nCommitting bump to Git...\n${NC}"
-    git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
-    git push
-
-    # Print FINAL summary
-    echo -e "\n${BG}Success! ${manifest} updated/committed/pushed to GitHub${NC}"
+    echo -e "${BY}Committing bump to Git...${NC}"
+    #git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
+    #git push
+    echo -e "\n${BG}Success! Manifest updated/committed/pushed to GitHub${NC}"
 fi
