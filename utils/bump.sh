@@ -2,17 +2,17 @@
 
 # Bumps extension manifest + git commit/push
 
-# Init UI colors
+# Init UI COLORS
 NC="\033[0m"    # no color
 BR="\033[1;91m" # bright red
 BY="\033[1;33m" # bright yellow
 BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
-# Init manifest path
+# Init manifest PATH
 manifest="chromium/extension/manifest.json"
 
-# Bump version
+# BUMP version
 echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
@@ -31,10 +31,10 @@ fi
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
 echo -e "${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
 
-# Commit/push bump(s)
+# COMMIT/PUSH bump(s)
 echo -e "${BY}\nCommitting bump to Git...\n${NC}"
 git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
 git push
 
-# Print final summary
+# Print FINAL summary
 echo -e "\n${BG}Success! ${manifest} updated/committed/pushed to GitHub${NC}"
