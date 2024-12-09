@@ -18,13 +18,12 @@ TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
 if [[ $old_ver == "$TODAY" ]] ; then
-    new_ver="$TODAY.1"
+     new_ver="$TODAY.1"
 elif [[ $old_ver == "$TODAY."* ]] ; then
-    LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
-    new_ver="$TODAY.$((LAST_NUMBER + 1))"
-else
-    new_ver="$TODAY"
-fi
+     LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
+     new_ver="$TODAY.$((LAST_NUMBER + 1))"
+else new_ver="$TODAY" ; fi
+new_versions+=("$new_ver")
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
 
