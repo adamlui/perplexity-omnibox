@@ -26,7 +26,7 @@ else
     new_ver="$TODAY"
 fi
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
-echo -e "${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
+echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
 
 # COMMIT/PUSH bump(s)
 echo -e "${BY}\nCommitting bump to Git...\n${NC}"
