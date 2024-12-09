@@ -20,7 +20,7 @@ echo -e "${BY}\nBumping version in ${MANIFEST_PATH}...${NC}\n"
 bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 
-# Check latest commit for extension changes
+# Check LATEST COMMIT for extension changes
 chromium_manifest_path=$(dirname "$MANIFEST_PATH" | sed 's|^\./||')
 echo "Checking last commit details for $chromium_manifest_path..."
 latest_platform_commit_msg=$(git log -1 --format=%s -- "$chromium_manifest_path")
@@ -29,7 +29,7 @@ if [[ $latest_platform_commit_msg == bump*(version|manifest)* ]] ; then
 
 echo "Bumping version in Chromium manifest..."
 
-# Determine old/new versions
+# Determine OLD/NEW versions
 old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$MANIFEST_PATH")
 if [[ $old_ver == "$TODAY" ]] ; then
      new_ver="$TODAY.1"
@@ -38,12 +38,12 @@ elif [[ $old_ver == "$TODAY."* ]] ; then
      new_ver="$TODAY.$((LAST_NUMBER + 1))"
 else new_ver="$TODAY" ; fi
 
-# Bump old version
+# BUMP old version
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$MANIFEST_PATH"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
 ((bumped_cnt++))
 
-# COMMIT/PUSH bump(s)
+# COMMIT/PUSH bump
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
     echo -e "${BY}Committing bump to Git...${NC}"
