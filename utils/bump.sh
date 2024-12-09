@@ -10,7 +10,7 @@ BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
 # Init manifest PATH
-manifest="chromium/extension/manifest.json"
+manifest_path="chromium/extension/manifest.json"
 
 # BUMP version
 echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
@@ -25,7 +25,7 @@ elif [[ $old_ver == "$TODAY."* ]] ; then
      new_ver="$TODAY.$((LAST_NUMBER + 1))"
 else new_ver="$TODAY" ; fi
 new_versions+=("$new_ver")
-sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
+sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest_path"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
 ((bumped_cnt++))
 
