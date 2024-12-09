@@ -14,6 +14,7 @@ manifest="chromium/extension/manifest.json"
 
 # BUMP version
 echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
+bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
@@ -26,11 +27,15 @@ else new_ver="$TODAY" ; fi
 new_versions+=("$new_ver")
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
+((bumped_cnt++))
 
-# COMMIT/PUSH bump(s)
-echo -e "${BY}\nCommitting bump to Git...\n${NC}"
-git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
-git push
+# COMMIT/PUSH bump
+if [[ $bumped_cnt -eq 0 ]] ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
+else
+    echo -e "\n${BY}\nCommitting bump to Git...\n${NC}"
+    git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
+    git push
 
-# Print FINAL summary
-echo -e "\n${BG}Success! ${manifest} updated/committed/pushed to GitHub${NC}"
+    # Print FINAL summary
+    echo -e "\n${BG}Success! ${manifest} updated/committed/pushed to GitHub${NC}"
+fi
