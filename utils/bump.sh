@@ -17,16 +17,13 @@ echo -e "${BY}\nBumping version in ${manifest}...${NC}\n"
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
-if [[ $old_ver == "$TODAY" ]]  # exact match for $TODAY
-    then # bump to $TODAY.1
-        NEW_VER="$TODAY.1"
-elif [[ $old_ver == "$TODAY."* ]] # partial match for $TODAY
-    then # bump to $TODAY.n+1
-        last_number=$(echo "$old_ver" | awk -F '.' '{print $NF}')
-        NEW_VER="$TODAY.$((last_number + 1))"
-else # no match for $TODAY
-    # bump to $TODAY
-        NEW_VER="$TODAY"
+if [[ $old_ver == "$TODAY" ]] ; then
+    new_ver="$TODAY.1"
+elif [[ $old_ver == "$TODAY."* ]] ; then
+    LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
+    new_ver="$TODAY.$((LAST_NUMBER + 1))"
+else
+    new_ver="$TODAY"
 fi
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$NEW_VER\"/" "$manifest"
 echo -e "${BW}v${old_ver}${NC} → ${BG}v${NEW_VER}${NC}"
