@@ -47,7 +47,7 @@ echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
     echo -e "${BY}Committing bump to Git...${NC}"
-    #git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
-    #git push
+    git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
+    git push
     echo -e "\n${BG}Success! Manifest updated/committed/pushed to GitHub${NC}"
 fi
