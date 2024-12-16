@@ -3,7 +3,7 @@ name: Sync ** to adamlui/ai-apps/perplexity-omnibox/
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
+    paths: ["**", "!.*"]
 
 jobs:
   build:
