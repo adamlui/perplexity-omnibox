@@ -42,3 +42,13 @@ jobs:
           refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
           zip_file: extension.zip
         continue-on-error: true
+
+      - name: Publish to EWS
+        if: env.VERSION_CHANGED == 'true'
+        uses: wdzeng/edge-addon@v2
+        with:
+          product-id: ${{ secrets.EWS_PRODUCT_ID }}
+          client-id: ${{ secrets.EWS_CLIENT_ID }}
+          api-key: ${{ secrets.EWS_CLIENT_SECRET }}
+          zip-path: extension.zip
+        continue-on-error: true
