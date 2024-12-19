@@ -24,7 +24,7 @@ TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 chromium_manifest_path=$(dirname "$MANIFEST_PATH" | sed 's|^\./||')
 echo "Checking last commit details for $chromium_manifest_path..."
 latest_platform_commit_msg=$(git log -1 --format=%s -- "$chromium_manifest_path")
-if [[ $latest_platform_commit_msg =~ bump.*(version|manifest) ]] ; then
+if [[ $latest_platform_commit_msg =~ bump.*(ersion|manifest) ]] ; then
     echo -e "No changes found." ; exit ; fi 
 
 echo "Bumping version in Chromium manifest..."
