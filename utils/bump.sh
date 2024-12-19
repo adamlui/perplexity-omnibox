@@ -5,11 +5,12 @@
 shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
 # Init UI COLORS
-NC="\033[0m"    # no color
-BR="\033[1;91m" # bright red
-BY="\033[1;33m" # bright yellow
-BG="\033[1;92m" # bright green
-BW="\033[1;97m" # bright white
+NC="\033[0m"        # no color
+DG="\033[38;5;243m" # dim gray
+BR="\033[1;91m"     # bright red
+BY="\033[1;33m"     # bright yellow
+BG="\033[1;92m"     # bright green
+BW="\033[1;97m"     # bright white
 
 # Init manifest PATH
 MANIFEST_PATH="chromium/extension/manifest.json"
@@ -24,6 +25,7 @@ TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 chromium_manifest_path=$(dirname "$MANIFEST_PATH" | sed 's|^\./||')
 echo "Checking last commit details for $chromium_manifest_path..."
 latest_platform_commit_msg=$(git log -1 --format=%s -- "$chromium_manifest_path")
+echo -e "${DG}${latest_platform_commit_msg}${NC}\n"
 if [[ $latest_platform_commit_msg =~ bump.*(ersion|manifest) ]] ; then
     echo -e "No changes found." ; exit ; fi 
 
