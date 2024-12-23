@@ -44,12 +44,19 @@ else new_ver="$TODAY" ; fi
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$MANIFEST_PATH"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
 ((bumped_cnt++))
+if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0 ; fi
 
-# COMMIT/PUSH bump
-if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
-else
-    echo -e "${BY}Committing bump to Git...\n${NC}"
-    git add ./**/manifest.json && git commit -n -m "Bumped \`version\` to $NEW_VER"
-    git push
-    echo -e "\n${BG}Success! Manifest updated/committed/pushed to GitHub${NC}"
-fi
+# PULL latest changes
+echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
+git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
+
+# ADD/COMMIT/PUSH bump(s)
+plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
+echo -e "\n${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
+echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
+COMMIT_MSG="Bumped \`version\`"
+unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
+if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
+git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
+git push
+echo -e "\n${BG}Success! ${bumped_cnt} manifest${plural_suffix} updated/committed/pushed to GitHub${NC}"
