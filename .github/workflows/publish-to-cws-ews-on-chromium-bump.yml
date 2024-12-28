@@ -32,7 +32,7 @@ jobs:
           zip -r ../../extension.zip .
 
       - name: Publish to CWS
-        if: env.VERSION_CHANGED == 'true'
+        if: false
         uses: mobilefirstllc/cws-publish@latest
         with:
           action: publish
@@ -51,4 +51,5 @@ jobs:
           client-id: ${{ secrets.EWS_CLIENT_ID }}
           api-key: ${{ secrets.EWS_CLIENT_SECRET }}
           zip-path: extension.zip
+          upload_only: true
         continue-on-error: true
