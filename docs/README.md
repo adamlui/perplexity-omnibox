@@ -1,10 +1,6 @@
-<div align="center"><img src="https://assets.perplexityomnibox.com/images/icons/perplexity/turquoise/icon64.png"></div>
-
----
-
 <div align="center">
  
-<img src="https://assets.perplexityomnibox.com/images/tiles/marquee/edge/tile1400x560.png" alt="Banner Perplexity Omnibox" width="80%">
+<img width="100%" src="https://assets.perplexityomnibox.com/images/tiles/marquee/edge/tile1400x560.png">
 <br><br>
 
 <a href="https://chrome.perplexityomnibox.com/?source=github&medium=readme&content=platform-badge">
@@ -13,8 +9,6 @@
     <img alt="[Get for Edge]" width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
 
 </div>
-
----
 
 ## FEATURES
 
