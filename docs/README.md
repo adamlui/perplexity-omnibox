@@ -5,8 +5,8 @@
 <div align="center">
  
   <img src="https://assets.perplexityomnibox.com/images/tiles/marquee/edge/tile1400x560.png" alt="Banner Perplexity Omnibox" width="80%">
-  <h1>🚀 Revolutionize Your Browsing Experience with AI</h1>
-  <p>Integrate <strong>Perplexity AI</strong> into your browser's omnibox for instant, smarter, and AI-powered searches.</p>
+  <br><br>
+  
   <a href="https://chrome.perplexityomnibox.com" target="_blank">
     <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=for-the-badge&logo=google-chrome" alt="Install Button">
   </a>
