@@ -21,4 +21,10 @@
 
 <img height=6px width="100%" src="https://assets.perplexityomnibox.com/images/separators/aqua-gradient.png">
 
-<div align="center"> <p><strong>Crafted with care by <a href="https://github.com/adamlui">Adam Lui</a></strong></p> <a href="https://chrome.perplexityomnibox.com" target="_blank"> <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=flat-square" alt="Install"> </a> </div>
+<div align="center">
+
+<a href="https://github.com/adamlui/perplexity-omnibox/issues">Get support</a> /
+<a href="https://github.com/adamlui">Contact author</a> /
+<a href="https://aiwebextensions.com">More AI web extensions</a>
+
+</div>
