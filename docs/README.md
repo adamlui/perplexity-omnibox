@@ -1,6 +1,4 @@
-<div align="center">
-   <img src="https://assets.perplexityomnibox.com/images/icons/perplexity/turquoise/icon64.png">
-</div>
+<div align="center"><img src="https://assets.perplexityomnibox.com/images/icons/perplexity/turquoise/icon64.png"></div>
 
 ---
 
