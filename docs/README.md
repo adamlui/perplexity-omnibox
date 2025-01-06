@@ -21,14 +21,4 @@
 
 <img height=6px width="100%" src="https://assets.perplexityomnibox.com/images/separators/aqua-gradient.png">
 
-## 🔧 How It Works
-### 🔹 Quick Installation
-
-1. **[Download the Extension](https://chrome.perplexityomnibox.com)** from the Chrome Web Store.
-2. **Start Searching**:
-   - Type `@perplexity` in the browser's omnibox followed by a space, then your query.  
-   - Press **Enter** to get results directly.
-
-<img height=6px width="100%" src="https://assets.perplexityomnibox.com/images/separators/aqua-gradient.png">
-
 <div align="center"> <p><strong>Crafted with care by <a href="https://github.com/adamlui">Adam Lui</a></strong></p> <a href="https://chrome.perplexityomnibox.com" target="_blank"> <img src="https://img.shields.io/badge/Install-Perplexity%20Omnibox-blue?style=flat-square" alt="Install"> </a> </div>
