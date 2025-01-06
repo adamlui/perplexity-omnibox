@@ -10,19 +10,14 @@
 
 </div>
 
-## FEATURES
+## 💡 About
 
-<div align="center">
+**Perplexity Omnibox** is a lightweight, easy-to-use extension that fetches AI search results from perplexity.ai.
 
-| ⚡ **Blazing Fast AI**       | 🌍 **Cross-Browser Support**      |
-|------------------------------|-----------------------------------|
-| AI-powered answers instantly | Compatible with Chrome & Edge     |
-
-| 🔒 **Privacy First**              | 💨 **Lightweight**               | 🚀 **Performance Optimized**      |
-|------------------------------------|----------------------------------|------------------------------------|
-| No personal data is collected.     | Minimal resource usage           | Fast and seamless operation.       |
-
-</div>
+- **Easy to use —** Just type `@perplexity` in address bar + query
+- **Super lightweight —** Only 82 KB
+- **Multi-browser support —** All Chromium browsers supported (e.g. Chrome + Edge + Opera)
+- **Privacy first —** No personal data collected
 
 ---
 
