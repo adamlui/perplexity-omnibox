@@ -21,10 +21,6 @@
 
 <img height=6px width="100%" src="https://assets.perplexityomnibox.com/images/separators/aqua-gradient.png">
 
-<div align="center">
-
 <a href="https://github.com/adamlui/perplexity-omnibox/issues">Get support</a> /
 <a href="https://github.com/adamlui">Contact author</a> /
 <a href="https://aiwebextensions.com">More AI web extensions</a>
-
-</div>
