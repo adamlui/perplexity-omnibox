@@ -50,13 +50,6 @@ jobs:
           git config --global user.email "auto-sync@kudoai.com"
           git config --global user.signingkey "${{ secrets.GPG_PRIVATE_ID }}"
 
-      - name: Push changes to adamlui/perplexity-omnibox
-        run: |
-          cd ${{ github.workspace }}/adamlui/perplexity-omnibox
-          git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from https://github.com/adamlui/perplexity-omnibox]" || true
-          git push
-
       - name: Push changes to adamlui/ai-apps
         run: |
           cd ${{ github.workspace }}/adamlui/ai-apps
