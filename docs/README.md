@@ -3,7 +3,7 @@
 <img width="100%" src="https://assets.perplexityomnibox.com/images/tiles/marquee/edge/tile1400x560.png">
 <br><br>
 
-<a href="https://chrome.perplexityomnibox.com/?source=github&medium=readme&content=platform-badge">
+<a href="https://chrome.perplexityomnibox.com/?utm_source=github&utm_medium=readme&utm_content=platform-badge">
     <img alt="[Get for Chrome]" width=auto height=60 src="https://assets.perplexityomnibox.com/images/badges/chrome-web-store/available-in-the-chrome-web-store-green-square-border-light-498x152.png"></a>
 <a href="https://edge.perplexityomnibox.com">
     <img alt="[Get for Edge]" width=auto height=60 src="https://assets.perplexityomnibox.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
