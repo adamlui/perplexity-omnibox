@@ -15,6 +15,7 @@ jobs:
       - name: Checkout adamlui/perplexity-omnibox
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/perplexity-omnibox
           path: adamlui/perplexity-omnibox
 
