@@ -5,7 +5,8 @@
 
 <a href="#">
     <img height=31 src="https://img.shields.io/badge/Users-830-blue?logo=weightsandbiases&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
-<a href="https://chrome.perplexityomnibox.com/?utm_source=github&utm_medium=readme&utm_content=chrome-rating-shield"><img alt="[Google Chrome]" height=31 src="https://img.shields.io/chrome-web-store/rating/ckhgddjdjkphbaediggjdddjdjgkalom?logo=googlechrome&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
+<a href="https://chrome.perplexityomnibox.com/?utm_source=github&utm_medium=readme&utm_content=chrome-rating-shield">
+    <img alt="[Google Chrome]" height=31 src="https://img.shields.io/chrome-web-store/rating/ckhgddjdjkphbaediggjdddjdjgkalom?logo=googlechrome&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="../LICENSE.md">
     <img alt="[License: MIT]" height=31 src="https://img.shields.io/badge/License-MIT-orange.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://www.codefactor.io/repository/github/adamlui/perplexity-omnibox">
