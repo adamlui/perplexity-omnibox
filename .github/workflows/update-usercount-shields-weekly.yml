@@ -1,0 +1,144 @@
+name: Update usercount shields in READMEs, then sync to adamlui/ai-web-extensions
+
+on:
+  schedule:
+    - cron: "33 2 * * 2" # every Tue @ 2:33 AM
+
+permissions:
+  contents: read
+
+jobs:
+  update-usercount-shields:
+    runs-on: ubuntu-latest
+    env:
+      TZ: PST8PDT
+
+    steps:
+      - name: Checkout adamlui/perplexity-omnibox
+        uses: actions/checkout@v4
+        with:
+          repository: adamlui/perplexity-omnibox
+          path: adamlui/perplexity-omnibox
+
+      - name: Checkout adamlui/ai-web-extensions
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/ai-web-extensions
+          path: adamlui/ai-web-extensions
+
+      - name: Fetch/sum user counts
+        run: |
+          expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
+            local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
+            if [[ $num =~ k$ ]] ; then
+              num="${num%k}" # remove 'k' suffix
+              num=$(awk "BEGIN { printf \"%.0f\", $num * 1000 }") # multiply by 1000
+            elif [[ $num =~ m$ ]] ; then
+              num="${num%m}" # remove 'm' suffix
+              num=$(awk "BEGIN { printf \"%.0f\", $num * 1000000 }") # multiply by 1000000
+            fi ; echo "$num"
+          }
+
+          format_total() {
+            local num=$1 ; first_digit="${num:0:1}" second_digit="${num:1:1}"
+            second_digit_rounded=$(( second_digit < 5 ? 0 : 5 ))
+            if (( num >= 1000000000 )) ; then # 1B+ w/ one decimal place
+              formatted_num="$(( num / 1000000000 ))"
+              remainder=$(( (num % 1000000000) / 100000000 ))
+              if (( remainder != 0 )) ; then formatted_num+=".$remainder" ; fi
+              formatted_num+="B+"
+            elif (( num >= 10000000 )) ; then # abbr 10,000,000+ to 999,000,000+
+              formatted_num=$(printf "%'.f+" $((( num / 1000000 ) * 1000000 )))
+            elif (( num >= 1000000 )) ; then # abbr 1,000,000+ to 9,500,000+
+              formatted_num="${first_digit},${second_digit}00,000+"
+            elif (( num >= 100000 )) ; then # abbr 100,000+ to 950,000+
+              formatted_num="${first_digit}${second_digit_rounded}0,000+"
+            elif (( num >= 10000 )) ; then # abbr 10,000+ to 90,000+
+              formatted_num="${first_digit}0,000+"
+            elif (( num >= 1000 )) ; then # abbr 1K to 9.9K
+              formatted_num="$(( num / 1000 ))"
+              remainder=$(( (num % 1000) / 100 ))
+              if (( remainder != 0 )) ; then formatted_num+=".$remainder" ; fi
+              formatted_num+="K"
+            else formatted_num="$num" ; fi # preserve <1K as is
+            echo "$formatted_num"
+          }
+
+          # Fetch Chrome weekly user count
+          base_url="https://img.shields.io/chrome-web-store/users/"
+          app_id="ckhgddjdjkphbaediggjdddjdjgkalom"
+          chrome_users=$(curl -s "$base_url$app_id" |
+            sed -n 's/.*<title>users: \([0-9.k]\+\)*<\/title>.*/\1/Ip')
+          chrome_users=$(expand_num "$chrome_users")
+          echo -e "\nChrome users: $chrome_users"
+
+          # Fetch Edge active user count
+          base_url="https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/"
+          app_id="ffpccpmmcnampmlpdeioklmdjccfmpih"
+          edge_users=$(curl -s "$base_url$app_id" |
+            sed -n 's/.*"activeInstallCount":\([0-9]*\).*/\1/p')
+          echo "Edge users: $edge_users"
+
+          # Sum user counts
+          total_users=$((chrome_users + edge_users))
+          echo -e "\n-----\nTotal users: $total_users\n-----\n"
+
+          # Format total
+          formatted_total_users=$(format_total "$total_users")
+          echo "Formatted total users: $formatted_total_users"
+
+          # Expose total for update step next
+          echo "TOTAL_USERS=$formatted_total_users" >> $GITHUB_ENV
+
+      - name: Update README shields
+        run: |
+          cd ${{ github.workspace }}/adamlui/perplexity-omnibox
+          TOTAL_USERS="${{ env.TOTAL_USERS }}"
+          if [ "$TOTAL_USERS" == "0" ] ; then echo "Error getting total usercount"
+          else # perform update
+            for readme in $(find docs/ -name "README.md") ; do
+              old_readme=$(<"$readme")
+              sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$TOTAL_USERS-/gI" "$readme"
+              new_readme=$(<"$readme")
+              if [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]]
+                then users_updated=true ; fi
+            done
+            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $TOTAL_USERS"
+            else echo "Usercount shields already up-to-date" ; fi
+          fi
+
+          # Set Updated flag to check in subseuqent steps
+          if [ "$users_updated" = true ] ; then echo "USERS_UPDATED=true" >> $GITHUB_ENV ; fi
+
+      - name: Sync ** to adamlui/ai-web-extensions/perplexity-omnibox/
+        if: env.USERS_UPDATED == 'true'
+        run: |
+          rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
+            ${{ github.workspace }}/adamlui/perplexity-omnibox/ \
+            ${{ github.workspace }}/adamlui/ai-web-extensions/perplexity-omnibox/
+      
+      - name: Config committer
+        if: env.USERS_UPDATED == 'true'
+        run: |
+          gpg --batch --import <(echo "${{ secrets.GPG_PRIVATE_KEY }}")
+          git config --global commit.gpgsign true
+          git config --global user.name "kudo-sync-bot"
+          git config --global user.email "auto-sync@kudoai.com"
+          git config --global user.signingkey "${{ secrets.GPG_PRIVATE_ID }}"
+
+      - name: Push changes to adamlui/perplexity-omnibox
+        if: env.USERS_UPDATED == 'true'
+        run: |
+          cd ${{ github.workspace }}/adamlui/perplexity-omnibox
+          git add .
+          git commit -n -m "Updated usercount shield counters in root READMEs" || true
+          git push
+
+      - name: Push changes to adamlui/ai-web-extensions
+        if: env.USERS_UPDATED == 'true'
+        run: |
+          cd ${{ github.workspace }}/adamlui/ai-web-extensions
+          git add .
+          git commit -n -m "Updated usercount shield counters in ChatGPT Widescreen root READMEs" || true
+          git push
