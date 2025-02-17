@@ -7,8 +7,6 @@
   "author": "Adam Lui",
   "homepage_url": "https://www.perplexityomnibox.com",
   "default_locale": "en",
-  "omnibox": { "keyword" : "@perplexity" },
-  "action": { "default_title": "Ask Perplexity.ai" },
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -16,6 +14,8 @@
     "64": "icons/icon64.png",
     "128": "icons/icon128.png"
   },
+  "action": { "default_title": "Ask Perplexity.ai" },
+  "omnibox": { "keyword" : "@perplexity" },
   "background": { "service_worker": "service-worker.js" },
   "minimum_chrome_version": "88"
 }
