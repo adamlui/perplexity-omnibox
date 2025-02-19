@@ -7,6 +7,10 @@
     <img alt="[Google Chrome]" height=31 src="https://img.shields.io/chrome-web-store/rating/ckhgddjdjkphbaediggjdddjdjgkalom?logo=googlechrome&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="../LICENSE.md">
     <img alt="[License: MIT]" height=31 src="https://img.shields.io/badge/License-MIT-orange.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
+<a href="https://chrome.perplexityomnibox.com">
+    <img height=31 alt="[Chrome Web Store]" src="https://img.shields.io/chrome-web-store/v/ckhgddjdjkphbaediggjdddjdjgkalom?label=Latest+Release&logo=googlechrome&logoColor=white&labelColor=464646&color=blue&style=for-the-badge"></a>
+<a href="#">
+    <img height=31 src="https://img.shields.io/chrome-web-store/size/ckhgddjdjkphbaediggjdddjdjgkalom?logo=databricks&logoColor=white&labelColor=464646&color=ff69b4&style=for-the-badge"></img></a>
 <a href="https://www.codefactor.io/repository/github/adamlui/perplexity-omnibox">
     <img alt="[CodeFactor grade]" height=31 src="https://img.shields.io/codefactor/grade/github/adamlui/perplexity-omnibox?label=Code+Quality&logo=codefactor&logoColor=white&labelColor=464646&color=b5fc7b&style=for-the-badge"></img></a>
 <a href="https://sonarcloud.io/component_measures?metric=new_vulnerabilities&id=adamlui_perplexity-omnibox">
