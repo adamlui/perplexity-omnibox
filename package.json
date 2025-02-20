@@ -24,6 +24,8 @@
     "lint:fix-all": "eslint . --fix",
     "bump": "bash utils/bump.sh",
     "bump:ext": "bash utils/bump.sh",
+    "bump:ext-nc": "bash utils/bump.sh --no-commit",
+    "bump:ext-np": "bash utils/bump.sh --no-push",
     "bump:extension": "bash utils/bump.sh",
     "bump:extensions": "bash utils/bump.sh",
     "bump:manifest": "bash utils/bump.sh",
