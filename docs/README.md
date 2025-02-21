@@ -32,7 +32,7 @@
 
 - **Easy to use —** Just type `@perplexity` in address bar + query
 - **Super lightweight —** < 100 KB
-- **Multi-browser support —** All Chromium browsers supported (e.g. Chrome + Edge + Opera)
+- **Multi-browser support —** All Chromium browsers supported (e.g. Chrome, Edge, Opera)
 - **Privacy focused —** No personal data collected
 
 <img height=6px width="100%" src="https://assets.perplexityomnibox.com/images/separators/aqua-gradient.png">
