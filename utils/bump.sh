@@ -25,7 +25,7 @@ MANIFEST_PATH="chromium/extension/manifest.json"
 echo -e "${BY}\nBumping version in ${MANIFEST_PATH}...${NC}\n"
 
 # Init BUMP vars
-bumped_manifests=() # for final summary
+declare -A bumped_manifests=()
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 
 # Check LATEST COMMIT for extension changes
@@ -50,17 +50,21 @@ else new_ver="$TODAY" ; fi
 # BUMP old version
 sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$MANIFEST_PATH"
 echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
-bumped_manifests+=("$platform_manifest_path/manifest.json")
+bumped_manifests["$platform_manifest_path/manifest.json"]="$old_ver;$new_ver"
+
+# LOG manifests bumped
 if (( ${#bumped_manifests[@]} == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0
-else echo -e "${BG}${#bumped_manifests[@]} manifest${plural_suffix} bumped!\n${NC}" ; fi
+else echo -e "${BG}${#bumped_manifests[@]} manifest${plural_suffix} bumped!${NC}" ; fi
 
 # ADD/COMMIT/PUSH bump(s)
 if [[ "$no_commit" != true ]] ; then
     plural_suffix=$((( ${#bumped_manifests[@]} > 1 )) && echo "s")
-    echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
-    COMMIT_MSG="Bumped \`version\`"
-    unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
-    if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
+    echo -e "\n${BY}Committing bump${plural_suffix} to Git...\n${NC}"
+
+    # Init commit msg
+    COMMIT_MSG="Bumped \`version\` to \`$new_ver\`" ; fi
+
+    # git add/commit/push
     git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
     if [[ "$no_push" != true ]] ; then
         echo -e "\n${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
@@ -68,10 +72,14 @@ if [[ "$no_commit" != true ]] ; then
         echo -e "\n${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
         git push
     fi
+
     git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
-                        [[ "$no_push"   != true ]] && echo -n "/pushed" )
+                           [[ "$no_push"   != true ]] && echo -n "/pushed" )
     echo -e "\n${BG}Success! ${#bumped_manifests[@]} manifest${plural_suffix} ${git_action} to GitHub${NC}"
 fi
 
 # Final SUMMARY log
-for manifest in "${bumped_manifests[@]}" ; do echo -e "  ± $manifest" ; done # log manifests bumped
+for manifest in "${!bumped_manifests[@]}" ; do
+    IFS=";" read -r old_ver new_ver <<< "${bumped_manifests[$manifest]}"
+    echo -e "  ± $manifest ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
+done
