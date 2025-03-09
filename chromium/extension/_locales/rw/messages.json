@@ -1,5 +1,6 @@
 {
   "appName": { "message": "Perplexity Omnibox" },
   "appAuthor": { "message": "Adam Lui" },
-  "appDesc": { "message": "Andika @perplexity muri adresse kugirango ubone ibisubizo bivuye muri Perplexity AI" }
+  "appDesc": { "message": "Andika @perplexity muri adresse kugirango ubone ibisubizo bivuye muri Perplexity AI" },
+  "prefix_ask": { "message": "Public files of %s%.0s" }
 }

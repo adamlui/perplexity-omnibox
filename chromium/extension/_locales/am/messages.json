@@ -1,5 +1,6 @@
 {
   "appName": { "message": "Perplexity Omnibox" },
   "appAuthor": { "message": "Adam Lui" },
-  "appDesc": { "message": "ከ Perplexity AI ውጤቶችን ለማግኘት በአድራሻ አሞሌ ውስጥ @perplexity ይተይቡ" }
+  "appDesc": { "message": "ከ Perplexity AI ውጤቶችን ለማግኘት በአድራሻ አሞሌ ውስጥ @perplexity ይተይቡ" },
+  "prefix_ask": { "message": "(ጠይቅ):" }
 }

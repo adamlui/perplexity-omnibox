@@ -1,5 +1,6 @@
 {
   "appName": { "message": "Perplexity Omnibox" },
   "appAuthor": { "message": "Adam Lui" },
-  "appDesc": { "message": "Perplexity AI-den netije almak üçin adres setirine @perplexity ýazyň" }
+  "appDesc": { "message": "Perplexity AI-den netije almak üçin adres setirine @perplexity ýazyň" },
+  "prefix_ask": { "message": "Sor" }
 }

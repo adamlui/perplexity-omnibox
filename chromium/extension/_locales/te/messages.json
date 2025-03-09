@@ -1,5 +1,6 @@
 {
   "appName": { "message": "Perplexity Omnibox" },
   "appAuthor": { "message": "Adam Lui" },
-  "appDesc": { "message": "Perplexity AI నుండి ఫలితాలను పొందడానికి చిరునామా పట్టీలో @perplexity అని టైప్ చేయండి" }
+  "appDesc": { "message": "Perplexity AI నుండి ఫలితాలను పొందడానికి చిరునామా పట్టీలో @perplexity అని టైప్ చేయండి" },
+  "prefix_ask": { "message": "అడగండి" }
 }

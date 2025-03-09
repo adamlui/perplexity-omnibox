@@ -1,5 +1,6 @@
 {
   "appName": { "message": "Perplexity Omnibox" },
   "appAuthor": { "message": "Adam Lui" },
-  "appDesc": { "message": "Tape @perplexity nan ba adrès la pou jwenn rezilta Perplexity AI" }
+  "appDesc": { "message": "Tape @perplexity nan ba adrès la pou jwenn rezilta Perplexity AI" },
+  "prefix_ask": { "message": "Mande" }
 }
