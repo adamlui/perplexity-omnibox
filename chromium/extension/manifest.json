@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "short_name": "Perplexity 🔎",
+  "short_name": "__MSG_prefix_ask__ Perplexity.ai",
   "description": "__MSG_appDesc__",
   "version": "2025.2.18",
   "author": "Adam Lui",
@@ -14,7 +14,7 @@
     "64": "icons/icon64.png",
     "128": "icons/icon128.png"
   },
-  "action": { "default_title": "Ask Perplexity.ai" },
+  "action": { "default_title": "__MSG_prefix_ask__ Perplexity.ai" },
   "omnibox": { "keyword" : "@perplexity" },
   "background": { "service_worker": "service-worker.js" },
   "minimum_chrome_version": "88"
