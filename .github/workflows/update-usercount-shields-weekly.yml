@@ -100,7 +100,7 @@ jobs:
 
       - name: Update README shields
         run: |
-          cd ${{ github.workspace }}/adamlui/deepseek-omnibox
+          cd ${{ github.workspace }}/adamlui/perplexity-omnibox
           CHROMIUM_USERS="${{ env.CHROMIUM_USERS }}" TOTAL_USERS="${{ env.TOTAL_USERS }}"
           if [ "$TOTAL_USERS" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
