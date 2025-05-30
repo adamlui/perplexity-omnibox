@@ -1,4 +1,4 @@
-name: Update usercount shields in READMEs, then sync to adamlui/ai-web-extensions
+name: Update usercount shields in readmes, then sync to adamlui/ai-web-extensions
 
 on:
   workflow_dispatch:
@@ -145,7 +145,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/perplexity-omnibox
           git add .
-          git commit -n -m "Updated usercount shield counters in READMEs" || true
+          git commit -n -m "Updated usercount shield counters in readmes" || true
           git push
 
       - name: Push changes to adamlui/ai-web-extensions
@@ -153,5 +153,5 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/ai-web-extensions
           git add .
-          git commit -n -m "Updated usercount shield counters in Perplexity Omnibox READMEs" || true
+          git commit -n -m "Updated usercount shield counters in Perplexity Omnibox readmes" || true
           git push
